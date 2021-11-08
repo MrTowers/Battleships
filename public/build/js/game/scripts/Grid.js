@@ -1,3 +1,4 @@
+import { snapToGrid } from "../../core/functions/snapToGrid.js";
 import { Vector2 } from "../../core/math/Vector2.js";
 import { GameObject } from "../../core/objects/GameObject.js";
 import { Sprite } from "../../core/render/Sprite.js";
@@ -26,10 +27,11 @@ export class Grid extends GameObject {
         this.ships.push(s);
         s.init();
         this.moveShip(s, new Vector2());
+        return s;
     }
     moveShip(ship, position) {
         for (let i = 0; i < ship.parts.length; i++) {
-            ship.parts[i].setPosition(new Vector2(position.x + (i * BSSettings.sizeOfShipsAndShots), position.y));
+            ship.parts[i].setPosition(new Vector2(snapToGrid(position.x + (i * BSSettings.sizeOfShipsAndShots), BSSettings.sizeOfShipsAndShots), snapToGrid(position.y, BSSettings.sizeOfShipsAndShots)));
         }
     }
 }

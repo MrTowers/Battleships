@@ -23,5 +23,4 @@ export function main() {
     //glowny obiekt gry
     const BattleShips = new System();
     spawnGameObject(BattleShips);
-    BattleShips.player1Grid.spawnShip(2);
 }
