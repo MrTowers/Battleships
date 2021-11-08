@@ -15,8 +15,8 @@ export class Engine {
 
     constructor () {
         this.canvas = document.createElement("canvas");
-        this.canvas.width = 1000;
-        this.canvas.height = 700;
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
         document.body.appendChild(this.canvas);
         this.canvas.style.backgroundColor = "black";
         this.ctx = this.canvas.getContext("2d")!;
