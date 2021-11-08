@@ -15,7 +15,9 @@ export class Tilemap extends Component {
     render(ctx) {
         if (this.image.width > 0 && this.image.height > 0) {
             let pos = this.gameObject.getPosition();
+            ctx.save();
             ctx.drawImage(this.image, this.display * this.oneTileSize, 0, this.oneTileSize, this.oneTileSize, pos.x, pos.y, this.sizeX, this.sizeY);
+            ctx.restore();
         }
     }
 }
