@@ -8,6 +8,7 @@ export class System extends GameObject {
     constructor() {
         super();
         this.player1Grid = new Grid(true);
+        this.player1Grid.usable = true;
         this.playerWebGrid = new Grid(false);
         this.player1Grid.setPosition(new Vector2(100, 100));
         this.playerWebGrid.setPosition(new Vector2((12 * BSSettings.sizeOfShipsAndShots) + 100, 100));
@@ -17,6 +18,13 @@ export class System extends GameObject {
         this.control = new Control();
         document.addEventListener("mousedown", (e) => {
             this.click();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (this.phase == "set up") {
+                if (e.key == "r") {
+                    this.accShip.rotate();
+                }
+            }
         });
         this.shipsToSetUp = [
             4,

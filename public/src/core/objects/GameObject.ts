@@ -50,6 +50,14 @@ export class GameObject {
         this.transform.position = location;
     }
 
+    getRotation () : number {
+        return this.transform.rotation;
+    }
+
+    setRotation (rotation: number) {
+        this.transform.rotation = rotation;
+    }
+
     render (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
         for (let i in this.components) {
             this.components[i].render(ctx, canvas);

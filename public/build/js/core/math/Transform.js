@@ -4,9 +4,10 @@
  */
 import { Vector2 } from "./Vector2.js";
 export class Transform {
-    constructor(position = new Vector2(), scale = new Vector2()) {
+    constructor(position = new Vector2(), scale = new Vector2(), rotation = 0) {
         this.position = position;
         this.scale = scale;
+        this.rotation = rotation;
     }
     add(t = new Transform()) {
         return new Transform(this.position.add(t.position), this.scale.add(t.scale));

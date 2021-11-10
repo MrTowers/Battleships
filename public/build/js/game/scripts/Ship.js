@@ -6,6 +6,7 @@ export class Ship extends Component {
         super();
         this.parts = [];
         this.health = size;
+        this.direction = "horizontal";
         this.init();
     }
     damage() {
@@ -19,9 +20,21 @@ export class Ship extends Component {
     init() {
         for (let i = 0; i < this.health; i++) {
             this.parts.push(new ShipPart(this, i));
+            this.parts[i].setDirection(this.direction);
             spawnGameObject(this.parts[i]);
         }
     }
     onDestroy() {
+    }
+    rotate() {
+        if (this.direction == "horizontal") {
+            this.direction = "vertical";
+        }
+        else {
+            this.direction = "horizontal";
+        }
+        for (let i in this.parts) {
+            this.parts[i].setDirection(this.direction);
+        }
     }
 }

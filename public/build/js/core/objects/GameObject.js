@@ -36,6 +36,12 @@ export class GameObject {
     setPosition(location = new Vector2()) {
         this.transform.position = location;
     }
+    getRotation() {
+        return this.transform.rotation;
+    }
+    setRotation(rotation) {
+        this.transform.rotation = rotation;
+    }
     render(ctx, canvas) {
         for (let i in this.components) {
             this.components[i].render(ctx, canvas);

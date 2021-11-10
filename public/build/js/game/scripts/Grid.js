@@ -30,8 +30,18 @@ export class Grid extends GameObject {
         return s;
     }
     moveShip(ship, position) {
-        for (let i = 0; i < ship.parts.length; i++) {
-            ship.parts[i].setPosition(new Vector2(snapToGrid(position.x + (i * BSSettings.sizeOfShipsAndShots), BSSettings.sizeOfShipsAndShots), snapToGrid(position.y, BSSettings.sizeOfShipsAndShots)));
+        if (ship.direction == "horizontal") {
+            for (let i = 0; i < ship.parts.length; i++) {
+                ship.parts[i].setPosition(new Vector2(snapToGrid(position.x + (i * BSSettings.sizeOfShipsAndShots), BSSettings.sizeOfShipsAndShots), snapToGrid(position.y, BSSettings.sizeOfShipsAndShots)));
+            }
         }
+        if (ship.direction == "vertical") {
+            for (let i = 0; i < ship.parts.length; i++) {
+                ship.parts[i].setPosition(new Vector2(snapToGrid(position.x, BSSettings.sizeOfShipsAndShots), snapToGrid(position.y + (i * BSSettings.sizeOfShipsAndShots), BSSettings.sizeOfShipsAndShots)));
+                console.log(ship.parts[i].getPosition());
+            }
+        }
+    }
+    rotateCurrentShip() {
     }
 }

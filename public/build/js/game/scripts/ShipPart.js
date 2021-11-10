@@ -1,13 +1,14 @@
 import { GameObject } from "../../core/objects/GameObject.js";
-import { Tilemap } from "../../core/render/Tilemap.js";
 import { LUMO_ENGINE2 } from "../../LumoEngine2.js";
 import { BSSettings } from "./ProjSettings.js";
+import { Tilemap } from "./Tilemap.js";
 export class ShipPart extends GameObject {
     constructor(ship, partNumber) {
         super();
         this.damaged = false;
         this.ship = ship;
         this.partNumber = partNumber;
+        this.direction = "horizontal";
         switch (ship.health) {
             case 1: {
                 this.tilemap = new Tilemap(LUMO_ENGINE2.textures["ship1"]);
@@ -32,10 +33,15 @@ export class ShipPart extends GameObject {
         this.tilemap.sizeX = BSSettings.sizeOfShipsAndShots;
         this.tilemap.sizeY = BSSettings.sizeOfShipsAndShots;
         this.tilemap.display = partNumber;
+        this.tilemap.direction = this.direction;
         this.addComponent(this.tilemap);
     }
     damage() {
         this.damaged = true;
         this.ship.damage();
+    }
+    setDirection(direction) {
+        this.direction = direction;
+        this.tilemap.direction = direction;
     }
 }

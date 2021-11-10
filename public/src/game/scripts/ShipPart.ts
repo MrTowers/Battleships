@@ -3,22 +3,24 @@ import { Vector2 } from "../../core/math/Vector2.js";
 import { Component } from "../../core/objects/Component.js";
 import { GameObject } from "../../core/objects/GameObject.js";
 import { Sprite } from "../../core/render/Sprite.js";
-import { Tilemap } from "../../core/render/Tilemap.js";
 import { LUMO_ENGINE2 } from "../../LumoEngine2.js";
 import { BSSettings } from "./ProjSettings.js";
 import { Ship } from "./Ship.js";
+import { Tilemap, _Direction } from "./Tilemap.js";
 
 export class ShipPart extends GameObject {
     damaged: boolean;
     ship: Ship;
     partNumber: number;
     tilemap: Tilemap;
+    direction: _Direction;
 
     constructor (ship: Ship, partNumber: number) {
         super();
         this.damaged = false;
         this.ship = ship;
         this.partNumber = partNumber;
+        this.direction = "horizontal";
 
         switch (ship.health) {
             case 1: {
@@ -52,11 +54,18 @@ export class ShipPart extends GameObject {
 
         this.tilemap.display = partNumber;
 
+        this.tilemap.direction = this.direction;
+
         this.addComponent(this.tilemap);
     }
 
     damage () {
         this.damaged = true;
         this.ship.damage();
+    }
+
+    setDirection (direction: _Direction) {
+        this.direction = direction;
+        this.tilemap.direction = direction;
     }
 }
