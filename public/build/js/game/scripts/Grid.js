@@ -42,6 +42,4 @@ export class Grid extends GameObject {
             }
         }
     }
-    rotateCurrentShip() {
-    }
 }
