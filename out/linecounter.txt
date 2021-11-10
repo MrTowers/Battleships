@@ -278,7 +278,7 @@ EXTENSION VERSION : 0.2.7
 count time : 2021-11-10 23:17:34
 count workspace : c:\Users\dawid\Desktop\Folder Dejwa\Gry w lumo engine\Statki
 total files : 81
-total code lines : 1771
+total code lines : 1771 (+177)
 total comment lines : 187
 total blank lines : 168
 
