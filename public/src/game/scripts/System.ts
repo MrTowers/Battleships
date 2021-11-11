@@ -112,4 +112,19 @@ export class System extends GameObject {
     attack (position: Vector2) {
 
     }
+
+    underAttack (position: Vector2) {
+        for (let i in this.player1Grid.ships) {
+            for (let j in this.player1Grid.ships[i].parts) {
+                let part = this.player1Grid.ships[i].parts[j];
+
+                if (Vector2.equal(position, part.getPosition())) {
+                    //trafienie
+                }
+                else {
+                    //nietrafienie
+                }
+            }
+        }
+    }
 }
