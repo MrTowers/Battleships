@@ -11,6 +11,7 @@ export class Shot extends Component {
         super();
         this.position = position;
         this.hit = hit;
+        this.tag = "shot";
     }
 
     render (ctx: CanvasRenderingContext2D) {

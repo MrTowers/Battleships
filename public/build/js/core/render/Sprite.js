@@ -9,11 +9,15 @@ export class Sprite extends Component {
         this.image = image;
         this.sizeX = 20;
         this.sizeY = 20;
+        this.alpha = 1;
     }
     render(ctx) {
         if (this.image.width > 0 && this.image.height > 0) {
             let pos = this.gameObject.getPosition();
+            ctx.save();
+            ctx.globalAlpha = this.alpha;
             ctx.drawImage(this.image, pos.x, pos.y, this.sizeX, this.sizeY);
+            ctx.restore();
         }
     }
 }

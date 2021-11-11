@@ -62,6 +62,15 @@ export class ShipPart extends GameObject {
     damage () {
         this.damaged = true;
         this.ship.damage();
+
+        this.tilemap.destroy();
+
+        let s = new Sprite(LUMO_ENGINE2.textures["destroyed"]);
+
+        s.sizeX = BSSettings.sizeOfShipsAndShots;
+        s.sizeY = BSSettings.sizeOfShipsAndShots;
+
+        this.addComponent(s);
     }
 
     setDirection (direction: _Direction) {

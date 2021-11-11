@@ -2,6 +2,7 @@
  * Copyright LumoEngine2 by Dawid Twers
  * www.github/MrTowers
  */
+import { between } from "../functions/between.js";
 import { clamp } from "../functions/clamp.js";
 import { rand } from "../functions/rand.js";
 export class Vector2 {
@@ -30,6 +31,14 @@ export class Vector2 {
             return new Vector2(0, 0);
         }
         return new Vector2(this.x / length, this.y / length);
+    }
+    static between(input, min, max) {
+        if (between(input.x, min.x, max.x)) {
+            if (between(input.y, min.y, max.y)) {
+                return true;
+            }
+        }
+        return false;
     }
     static clamp(input, min = 0, max = 0) {
         let x = input.x;

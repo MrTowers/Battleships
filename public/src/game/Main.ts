@@ -14,6 +14,7 @@ export function main () {
     Load.texture("./textures/ships/2partship.png", "ship2");
     Load.texture("./textures/ships/3partship.png", "ship3");
     Load.texture("./textures/ships/4partship.png", "ship4");
+    Load.texture("./textures/ships/destroyedPart.png", "destroyed");
 
     Load.texture("./textures/envoirment/shotHit.png", "shotHit");
     Load.texture("./textures/envoirment/shotMiss.png", "shotMiss");

@@ -1,12 +1,16 @@
+import { snapToGrid } from "../../core/functions/snapToGrid.js";
 import { spawnGameObject } from "../../core/functions/spawnGameObject.js";
 import { Vector2 } from "../../core/math/Vector2.js";
 import { Component } from "../../core/objects/Component.js";
 import { GameObject } from "../../core/objects/GameObject.js";
+import { Sprite } from "../../core/render/Sprite.js";
+import { LUMO_ENGINE2 } from "../../LumoEngine2.js";
 import { Control } from "./Control.js";
 import { Grid } from "./Grid.js";
 import { BSSettings } from "./ProjSettings.js";
 import { Ship } from "./Ship.js";
 import { ShipPart } from "./ShipPart.js";
+import { Shot } from "./Shot.js";
 
 type _Phase = "set up" | "wait" | "attack";
 
@@ -17,6 +21,7 @@ export class System extends GameObject {
     shipsToSetUp: number[];
     accShip: Ship;
     control: Control;
+    shotSprite!: GameObject;
 
     constructor() {
         super();
@@ -40,7 +45,7 @@ export class System extends GameObject {
                     this.accShip.rotate();
                 }
             }
-        })
+        });
 
         this.shipsToSetUp = [
             4,
@@ -62,10 +67,17 @@ export class System extends GameObject {
         if (this.phase == "set up") {
             this.player1Grid.moveShip(this.accShip, this.control.mousepos);
         }
+
+        if (this.phase == "attack") {
+            let pos = this.control.mousepos;
+            this.shotSprite.setPosition(new Vector2(snapToGrid(pos.x, BSSettings.sizeOfShipsAndShots), snapToGrid(pos.y, BSSettings.sizeOfShipsAndShots)));
+        }
     }
 
     placeShip() {
-        this.accShip = this.player1Grid.spawnShip(<number>this.shipsToSetUp.pop());
+        if (Vector2.between(this.control.mousepos, this.player1Grid.getPosition().add(new Vector2(BSSettings.sizeOfShipsAndShots, BSSettings.sizeOfShipsAndShots)), new Vector2(this.player1Grid.sprite.sizeX, this.player1Grid.sprite.sizeY).add(this.player1Grid.getPosition().sub(new Vector2(BSSettings.sizeOfShipsAndShots, BSSettings.sizeOfShipsAndShots))))) {
+            this.accShip = this.player1Grid.spawnShip(<number>this.shipsToSetUp.pop());
+        }
     }
 
     click() {
@@ -77,5 +89,27 @@ export class System extends GameObject {
                 this.placeShip();
             }
         }
+
+        if (this.phase == "attack") {
+            if (Vector2.between(this.control.mousepos, this.playerWebGrid.getPosition().add(new Vector2(BSSettings.sizeOfShipsAndShots, BSSettings.sizeOfShipsAndShots)), new Vector2(this.player1Grid.sprite.sizeX, this.player1Grid.sprite.sizeY).add(this.player1Grid.getPosition().sub(new Vector2(BSSettings.sizeOfShipsAndShots, BSSettings.sizeOfShipsAndShots))))) {
+                this.attack(new Vector2(snapToGrid(this.control.mousepos.x, BSSettings.sizeOfShipsAndShots), snapToGrid(this.control.mousepos.y, BSSettings.sizeOfShipsAndShots)));
+            }
+        }
+    }
+
+    beginShooting () {
+        this.phase = "attack";
+        let x = new GameObject();
+        let s = new Sprite(LUMO_ENGINE2.textures["shotMiss"]);
+        s.alpha = 0.5;
+        s.sizeX = BSSettings.sizeOfShipsAndShots;
+        s.sizeY = BSSettings.sizeOfShipsAndShots;
+        x.addComponent(s);
+        this.shotSprite = x;
+        spawnGameObject(x);
+    }
+
+    attack (position: Vector2) {
+
     }
 }

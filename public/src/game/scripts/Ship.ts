@@ -13,7 +13,7 @@ export class Ship extends Component {
         this.parts = [];
         this.health = size;
         this.direction = "horizontal";
-        this.init();
+        //this.init();
     }
 
     damage () {
@@ -31,7 +31,6 @@ export class Ship extends Component {
             this.parts.push(new ShipPart(this, i));
             this.parts[i].setDirection(this.direction);
             spawnGameObject(this.parts[i]);
-            
         }
     }
 
