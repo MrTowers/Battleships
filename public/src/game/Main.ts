@@ -1,5 +1,6 @@
 import { spawnGameObject } from "../core/functions/spawnGameObject.js";
 import { Load } from "../core/Load.js";
+import { Network } from "../core/networking/Network.js";
 import { GameObject } from "../core/objects/GameObject.js";
 import { Sprite } from "../core/render/Sprite.js";
 import { LUMO_ENGINE2 } from "../LumoEngine2.js";
@@ -49,5 +50,4 @@ export function main () {
     //glowny obiekt gry
     const BattleShips = new System();
     spawnGameObject(BattleShips);
-    
 }
