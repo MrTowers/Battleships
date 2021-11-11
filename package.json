@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/MrTowers/Battleships#readme",
   "dependencies": {
+    "@types/socket.io": "^3.0.2",
     "express": "^4.17.1",
-    "socket.io": "^4.3.2"
+    "socket.io": "^4.3.2",
+    "socket.io-client": "^4.3.2"
   }
 }

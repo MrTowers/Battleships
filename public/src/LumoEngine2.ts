@@ -7,6 +7,7 @@
 import { Engine } from "./core/render/Engine.js";
 import { main } from "./game/Main.js";
 
+
 export const LUMO_ENGINE2 = new Engine();
 
 let lastTime = 0;

@@ -1,9 +1,11 @@
+import { playSound } from "../../core/functions/playSound.js";
 import { Transform } from "../../core/math/Transform.js";
 import { Vector2 } from "../../core/math/Vector2.js";
 import { Component } from "../../core/objects/Component.js";
 import { GameObject } from "../../core/objects/GameObject.js";
 import { Sprite } from "../../core/render/Sprite.js";
 import { LUMO_ENGINE2 } from "../../LumoEngine2.js";
+import { _Sounds } from "../Main.js";
 import { BSSettings } from "./ProjSettings.js";
 import { Ship } from "./Ship.js";
 import { Tilemap, _Direction } from "./Tilemap.js";
@@ -71,6 +73,10 @@ export class ShipPart extends GameObject {
         s.sizeY = BSSettings.sizeOfShipsAndShots;
 
         this.addComponent(s);
+
+        let sound: _Sounds;
+        sound = "hit";
+        playSound(sound);
     }
 
     setDirection (direction: _Direction) {

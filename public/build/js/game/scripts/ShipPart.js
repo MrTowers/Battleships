@@ -1,3 +1,4 @@
+import { playSound } from "../../core/functions/playSound.js";
 import { GameObject } from "../../core/objects/GameObject.js";
 import { Sprite } from "../../core/render/Sprite.js";
 import { LUMO_ENGINE2 } from "../../LumoEngine2.js";
@@ -45,6 +46,9 @@ export class ShipPart extends GameObject {
         s.sizeX = BSSettings.sizeOfShipsAndShots;
         s.sizeY = BSSettings.sizeOfShipsAndShots;
         this.addComponent(s);
+        let sound;
+        sound = "hit";
+        playSound(sound);
     }
     setDirection(direction) {
         this.direction = direction;
